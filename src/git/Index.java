@@ -20,10 +20,20 @@ public class Index {
 	
 	public void add (String fileName) throws IOException {
 		StringBuilder newString = new StringBuilder ();
+		Scanner fileCopier = new Scanner (new File ("Testing/index.txt"));
+		while (fileCopier.hasNextLine()) {
+			String newLine = fileCopier.nextLine();
+			newString.append(newLine);
+			System.out.println (newLine);
+			newString.append("\n");
+		}
+		fileCopier.close();
 		newString.append(fileName + " : ");
 		Blob newBlob = new Blob (fileName);
 		newString.append("" + newBlob.getSHAString() + "\n");
-		iWriter.write(newString.toString());
+		FileWriter indexWriter = new FileWriter ("Testing/index.txt");
+		indexWriter.write(newString.toString());
+		indexWriter.close();
 	}
 	
 	public void remove (String fileName) throws IOException {
@@ -39,5 +49,6 @@ public class Index {
 			}
 		}
 		iWriter.write(newString.toString());
+		iWriter.close();
 	}
 }
