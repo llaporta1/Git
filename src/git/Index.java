@@ -38,17 +38,19 @@ public class Index {
 	
 	public void remove (String fileName) throws IOException {
 		int numOfCharsInFileName = fileName.length();
-		File f = new File (fileName);
+		File f = new File ("Testing/objects" + SHA1.encryptThisString(fileName));
 		f.delete();
-		Scanner fileScanner = new Scanner ("Testing/index.txt");
+		Scanner fileScanner = new Scanner (new File ("Testing/index.txt"));
 		StringBuilder newString = new StringBuilder ();
-		while (fileScanner.hasNext()) {
-			String newLine = fileScanner.next();
-			if (!(newLine.substring(0, numOfCharsInFileName).equals(fileName))) {
+		while (fileScanner.hasNextLine()) {
+			String newLine = fileScanner.nextLine();
+			if (!(newLine.substring(8, 8 + numOfCharsInFileName).equals(fileName))) {
 				newString.append(newLine);
+				newString.append("\n");
 			}
 		}
-		iWriter.write(newString.toString());
-		iWriter.close();
+		FileWriter indexWriter = new FileWriter ("Testing/index.txt");
+		indexWriter.write(newString.toString());
+		indexWriter.close();
 	}
 }
