@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Index {
 	FileWriter iWriter;
+	private HashMap<String, String> blobStorage = new HashMap<String, String>();
 	public Index () {	
 	}
 	
@@ -30,7 +32,9 @@ public class Index {
 		fileCopier.close();
 		newString.append(fileName + " : ");
 		Blob newBlob = new Blob (fileName);
-		newString.append("" + newBlob.getSHAString() + "\n");
+		blobStorage.putIfAbsent(fileName, newBlob.getSHAString());
+		System.out.println (blobStorage.get(fileName));
+		newString.append("" + blobStorage.get(fileName) + "\n");
 		FileWriter indexWriter = new FileWriter ("Testing/index.txt");
 		indexWriter.write(newString.toString());
 		indexWriter.close();
@@ -38,8 +42,8 @@ public class Index {
 	
 	public void remove (String fileName) throws IOException {
 		int numOfCharsInFileName = fileName.length();
-		File f = new File ("Testing/objects" + SHA1.encryptThisString(fileName));
-		f.delete();
+		File toDelete = new File ("Testing/objects/" + blobStorage.get("Testing/" + fileName) + ".txt");
+		toDelete.delete();
 		Scanner fileScanner = new Scanner (new File ("Testing/index.txt"));
 		StringBuilder newString = new StringBuilder ();
 		while (fileScanner.hasNextLine()) {
