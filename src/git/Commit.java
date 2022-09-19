@@ -25,6 +25,10 @@ public class Commit {
 		return Commit.encryptThisString(node.getDate());
 	}
 	
+	public CommitNode getNode () {
+		return node;
+	}
+	
 	public void writeFile () throws IOException {
 		StringBuilder fileString = new StringBuilder();
 		fileString.append ("objects/" + node.getPTree() + "\n");
