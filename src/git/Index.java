@@ -51,7 +51,7 @@ public class Index {
 	public void remove (String fileName) throws IOException {
 		int numOfCharsInFileName = fileName.length(); // keeping track of this so that we can search only the first part of a blob's entry in index.txt
 		// for example, in Testing/sample.txt, we just want to read "sample.txt", so it's good to know that "sample.txt" is 10 chars
-		File toDelete = new File ("Testing/objects/" + blobStorage.get("Testing/" + fileName) + ".txt");
+		File toDelete = new File ("Testing/objects/" + blobStorage.get("Testing/" + fileName));
 		toDelete.delete();// deletes the desired file in objects folder
 		Scanner fileScanner = new Scanner (new File ("Testing/index.txt")); // will scan through index.txt
 		StringBuilder newString = new StringBuilder (); // new StringBuilder will eventually replace whatever text is currently in index.txt
