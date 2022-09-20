@@ -13,8 +13,10 @@ public class Commit {
 	
 	public Commit (CommitNode parent, String pTree, String summary, String author, String date) {
 		CommitNode newNode = new CommitNode (pTree, summary, author, date);
-		parent.setChild(newNode);
-		newNode.setParent(parent);
+		if (parent != null) {
+			parent.setChild(newNode);
+			newNode.setParent(parent);
+		}
 		node = newNode;
 		
 		String sha = Commit.encryptThisString("" + summary + "" + date + "" + author + "" + parent);
@@ -32,10 +34,10 @@ public class Commit {
 	public void writeFile () throws IOException {
 		StringBuilder fileString = new StringBuilder();
 		fileString.append ("objects/" + node.getPTree() + "\n");
-		if (node.getParent().getPTree() != null ) {
+		if (node.getParent() != null ) {
 			fileString.append("objects/" + node.getParent().getPTree() + "\n");
 		}
-		if (node.getChild().getPTree() != null ) {
+		if (node.getChild() != null ) {
 			fileString.append("objects/" + node.getChild().getPTree() + "\n");
 		}
 		fileString.append ("" + node.getAuthor() + "\n");
