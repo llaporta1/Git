@@ -1,4 +1,4 @@
-package git;
+package Tester;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.junit.Test;
+
+import git.TreeObject;
 
 public class TreeObjectJUnitTester {
 
