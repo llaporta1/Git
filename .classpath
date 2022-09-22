@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="/Users/laurenlaporta/Downloads/junit-jupiter-5.9.0.jar"/>
 	<classpathentry kind="lib" path="/Users/laurenlaporta/Downloads/junit-jupiter-api-5.9.0.jar"/>
 	<classpathentry kind="lib" path="/Users/laurenlaporta/Downloads/junit-platform-suite-1.9.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
